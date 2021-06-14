@@ -18,7 +18,10 @@ namespace App.Two.Server
         {
             services
                 .AddSignalR()
-                .AddAzureSignalR();
+                .AddAzureSignalR(
+                // this is required to discriminate messages between apps
+                // options => options.ApplicationName = "serverApp2"
+                );
 
             services
                 .AddOptions<ServerOptions>()
