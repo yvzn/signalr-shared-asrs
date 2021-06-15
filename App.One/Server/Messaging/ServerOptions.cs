@@ -6,7 +6,8 @@ namespace App.One.Server.Messaging
     {
         public static string SectionName = "ServerApp";
 
-        public string AppName { get; set; } = "<unknown>";
+        // TODO sanitize AppName to match Azure SignalR requirements
+        public string AppName { get; set; } = "unknown";
 
         public Ping Ping { get; set; } = new();
     }

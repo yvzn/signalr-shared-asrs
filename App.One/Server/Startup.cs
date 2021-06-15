@@ -16,16 +16,19 @@ namespace App.One.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddSignalR()
-                .AddAzureSignalR(
-                // this is required to discriminate messages between apps
-                // options => options.ApplicationName = "serverApp1"
-                );
+            var configurationSection = Configuration.GetSection(ServerOptions.SectionName);
+            var applicationName = configurationSection.Get<ServerOptions>().AppName;
 
             services
                 .AddOptions<ServerOptions>()
-                .BindConfiguration(ServerOptions.SectionName);
+                .Bind(configurationSection);
+
+            services
+                .AddSignalR()
+                .AddAzureSignalR(
+                 // this is required to discriminate messages between apps
+                 options => options.ApplicationName = applicationName
+                );
 
             services.AddHostedService<PingHostedService>();
         }
