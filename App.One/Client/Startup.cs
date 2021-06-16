@@ -27,7 +27,7 @@ namespace App.One.Client
                 .AddTransient<IMessageHandler, MessageHandler>();
         }
 
-        public void Configure(IApplicationBuilder _)
+        public void Configure()
         {
 
         }

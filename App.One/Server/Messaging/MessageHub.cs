@@ -16,10 +16,10 @@ namespace App.One.Server.Messaging
             this.options = options.Value;
         }
 
-        public async Task MessageFromClient(string clientName, string message)
+        public Task MessageFromClient(string clientName, string message)
         {
             logger.LogInformation("{ApplicationName} received message from {ClientName}: {ClientMessage}", options.AppName, clientName, message);
-            await Clients.All.SendAsync("messageFromServer", message);
+            return Task.CompletedTask;
         }
     }
 }

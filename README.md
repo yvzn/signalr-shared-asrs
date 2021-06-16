@@ -41,9 +41,9 @@ Requirements:
 Set the connection strings:
 
 ```powershell
-dotnet user-secrets set Azure:SignalR:ConnectionString "<Your connection string>" --project App.One/Server/
+dotnet user-secrets set Azure:SignalR:ConnectionString "<Your Azure SignalR connection string>" --project App.One/Server/
 
-dotnet user-secrets set Azure:SignalR:ConnectionString "<Your connection string>" --project App.Two/Server/
+dotnet user-secrets set Azure:SignalR:ConnectionString "<Your Azure SignalR connection string>" --project App.Two/Server/
 ```
 
 Install HTTPS development certificates (if required):
@@ -53,12 +53,13 @@ dotnet dev-certs https --trust
 ```
 
 Run the 4 apps:
+
 ```powershell
-'App.One/Server','App.One/Client','App.Two/Server','App.Two/Client' | % { start "cmd" "/k dotnet run" -WorkingDirectory $_ }
+'App.One/Server','App.One/Client','App.Two/Server','App.Two/Client' | % { Start "cmd" "/k dotnet run" -WorkingDirectory $_ }
 ```
 
 ## TODO
-- Sanitize AppName automatically, to match Azure SignalR requirements
+- Sanitize AppName automatically, to match Azure SignalR requirements:
   - <q>Property 'ApplicationName' value should be prefixed with alphabetic characters and only contain alpha-numeric characters or underscore.</q>
 - Wait for Azure SignalR connection ready before scheduling messages
 - Use Tye to configure and run the 4 apps
